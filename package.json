@@ -1,0 +1,29 @@
+{
+  "name": "editful-unsplash",
+  "version": "0.1.2",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.13.1",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "check": "editful-plugin check",
+    "build": "editful-plugin build",
+    "dev": "editful-plugin dev",
+    "pack": "editful-plugin pack",
+    "verify": "pnpm typecheck && pnpm check"
+  },
+  "dependencies": {
+    "@editful/canvas-sdk": "^0.9.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@editful/plugin-tools": "^0.9.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "^5.9.0"
+  }
+}
