@@ -74,13 +74,13 @@ export async function search(
   const response = await action.network.request({
     url: `${SERVICE}/v1/boards/${encodeURIComponent(boardId)}/integrations/unsplash/search?query=${encodeURIComponent(query)}&per_page=30`,
     method: 'GET',
-    response: 'json',
+    response: 'text',
     auth: 'board',
   });
   if (response.status < 200 || response.status >= 300) {
-    throw new Error('Unsplash search failed');
+    throw new Error(responseError(response.body, 'Unsplash search failed'));
   }
-  return parseSearch(response.body);
+  return parseSearch(parseJson(response.body));
 }
 
 export async function randomPhotos(
@@ -98,13 +98,13 @@ export async function randomPhotos(
   const response = await action.network.request({
     url: `${SERVICE}/v1/boards/${encodeURIComponent(boardId)}/integrations/unsplash/random?count=30`,
     method: 'GET',
-    response: 'json',
+    response: 'text',
     auth: 'board',
   });
   if (response.status < 200 || response.status >= 300) {
-    throw new Error('Unsplash photos failed');
+    throw new Error(responseError(response.body, 'Unsplash photos failed'));
   }
-  const photos = parseSearch(response.body);
+  const photos = parseSearch(parseJson(response.body));
   assertActive(action);
   cache.set(boardId, {
     expiresAt: Date.now() + DISCOVERY_CACHE_TTL_MS,
@@ -139,12 +139,29 @@ export async function track(
       photo_id: photo.id,
       download_location: photo.downloadLocation,
     }),
-    response: 'json',
+    response: 'text',
     auth: 'board',
   });
   if (response.status < 200 || response.status >= 300) {
-    throw new Error('Unsplash download tracking failed');
+    throw new Error(
+      responseError(response.body, 'Unsplash download tracking failed'),
+    );
   }
+}
+
+function parseJson(value: unknown): unknown {
+  if (typeof value !== 'string') return value;
+  try {
+    return JSON.parse(value) as unknown;
+  } catch {
+    throw new Error('Unsplash response is invalid');
+  }
+}
+
+function responseError(value: unknown, fallback: string): string {
+  if (typeof value !== 'string') return fallback;
+  const message = value.trim();
+  return message !== '' && message.length <= 200 ? message : fallback;
 }
 
 export function place(
