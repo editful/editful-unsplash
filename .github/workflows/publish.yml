@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: 26
           cache: pnpm
-          registry-url: https://npm.pkg.github.com
 
       - name: Verify tag matches package version
         run: |
@@ -40,6 +39,13 @@ jobs:
           package_path=$(npm pack --ignore-scripts --json | node -e "let input=''; process.stdin.on('data', chunk => input += chunk); process.stdin.on('end', () => process.stdout.write(JSON.parse(input)[0].filename));")
           echo "path=${package_path}" >> "$GITHUB_OUTPUT"
           shasum -a 256 "$package_path" > SHA256SUMS
+
+      - name: Configure GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          registry-url: https://npm.pkg.github.com
+          scope: '@editful'
 
       - name: Publish to GitHub Packages
         run: npm publish "${{ steps.pack.outputs.path }}" --ignore-scripts
