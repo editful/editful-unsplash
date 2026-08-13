@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@editful/canvas-sdk':
-        specifier: ^0.14.0
-        version: 0.14.0
+        specifier: ^0.15.0
+        version: 0.15.0
       react:
         specifier: ^19.2.0
         version: 19.2.8
@@ -19,8 +19,8 @@ importers:
         version: 19.2.8(react@19.2.8)
     devDependencies:
       '@editful/plugin-tools':
-        specifier: ^0.14.0
-        version: 0.14.0
+        specifier: ^0.15.0
+        version: 0.15.0
       '@types/react':
         specifier: ^19.2.0
         version: 19.2.17
@@ -33,14 +33,14 @@ importers:
 
 packages:
 
-  '@editful/canvas-sdk@0.14.0':
-    resolution: {integrity: sha512-lbHQFCCAInOEnjGzXe9N2SVaK8O3LgIyH8E12rzIw3/tGUl3bZo4UDCEFqsXEne/YUUQZt/iRynBpv7ixauPag==}
+  '@editful/canvas-sdk@0.15.0':
+    resolution: {integrity: sha512-uwBxHCxvNKej9x0INMiJHcbVDcfkZV6/16xDon0gpGO3l7G1aKVEUES2wRyc/G926SiCtRxUGMslNMeWKG6NTQ==}
 
-  '@editful/plugin-artifact@0.14.0':
-    resolution: {integrity: sha512-Nqvgo+l2WuU5Jz1vwL3PFlJVTiPVb5b/r6fcvS2SysIXm6Ghw74WTkBRO8Y7Yxz0hon3v6tz3nf3Lzzw93oj/Q==}
+  '@editful/plugin-artifact@0.15.0':
+    resolution: {integrity: sha512-wpACU0R8nQ1pUFpHjRnG8VIjVzMZv/UDMydWjNGJ9IIDHH53DI6i/3IUDxWEH+1sLOluyq/WghNYj9PlcZKcvA==}
 
-  '@editful/plugin-tools@0.14.0':
-    resolution: {integrity: sha512-q5j9oPKVwd0wKrtX/Mat5RPOdIoo0DWTdV8V79vqFT05qp51pKEz08XSgeXDgVFbRGnIqM33Xmr/wkxekBS/Hw==}
+  '@editful/plugin-tools@0.15.0':
+    resolution: {integrity: sha512-4GN8EeON7x+bYxVlIyiUUzwVobdJTeMdcYc2UDuG/Cy9v7EOxzOvdcVyEKAP9ZLDjEeqqOZk2NWBSq8QZo8QRg==}
     engines: {node: '>=26'}
     hasBin: true
 
@@ -209,16 +209,16 @@ packages:
 
 snapshots:
 
-  '@editful/canvas-sdk@0.14.0': {}
+  '@editful/canvas-sdk@0.15.0': {}
 
-  '@editful/plugin-artifact@0.14.0':
+  '@editful/plugin-artifact@0.15.0':
     dependencies:
       acorn: 8.18.0
       es-module-lexer: 2.3.1
 
-  '@editful/plugin-tools@0.14.0':
+  '@editful/plugin-tools@0.15.0':
     dependencies:
-      '@editful/plugin-artifact': 0.14.0
+      '@editful/plugin-artifact': 0.15.0
       rolldown: 1.2.1
 
   '@emnapi/core@2.0.0-alpha.3':
