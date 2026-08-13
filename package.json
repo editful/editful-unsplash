@@ -1,6 +1,6 @@
 {
   "name": "@editful/plugin-unsplash",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Search Unsplash and place attributed photos on an Editful canvas.",
   "license": "MIT",
   "author": "Editful",
@@ -30,12 +30,12 @@
     "verify": "pnpm typecheck && pnpm check"
   },
   "dependencies": {
-    "@editful/canvas-sdk": "^0.14.0",
+    "@editful/canvas-sdk": "^0.15.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@editful/plugin-tools": "^0.14.0",
+    "@editful/plugin-tools": "^0.15.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "typescript": "^5.9.0"

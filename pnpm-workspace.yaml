@@ -1,4 +1,4 @@
 minimumReleaseAgeExclude:
-  - '@editful/canvas-sdk@0.9.2 || 0.14.0'
-  - '@editful/plugin-artifact@0.9.2 || 0.14.0'
-  - '@editful/plugin-tools@0.9.2 || 0.14.0'
+  - '@editful/canvas-sdk@0.9.2 || 0.14.0 || 0.15.0'
+  - '@editful/plugin-artifact@0.9.2 || 0.14.0 || 0.15.0'
+  - '@editful/plugin-tools@0.9.2 || 0.14.0 || 0.15.0'
