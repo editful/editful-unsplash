@@ -1,6 +1,6 @@
 {
   "name": "@editful/plugin-unsplash",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Search Unsplash and place attributed photos on an Editful canvas.",
   "license": "MIT",
   "author": "Editful",
