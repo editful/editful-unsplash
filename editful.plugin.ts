@@ -4,10 +4,11 @@ export default definePluginConfig({
   id: 'editful:unsplash',
   name: 'Unsplash',
   description: 'Search and place Unsplash photos on the canvas.',
-  version: '0.1.2',
+  version: '0.1.3',
   entry: './src/index.ts',
-  minAppVersion: '0.9.1',
-  maxAppVersion: '0.10.0',
+  sdkVersion: '0.14.0',
+  minAppVersion: '0.12.0',
+  maxAppVersion: '0.13.0',
   capabilities: [
     'node-kinds',
     'commands',
@@ -40,6 +41,6 @@ export default definePluginConfig({
   settings: [],
   secrets: [],
   author: 'Editful',
-  homepage: 'https://editful.com',
+  homepage: 'https://github.com/editful/editful-unsplash',
   assets: { icons: ['./assets/unsplash.svg'] },
 });

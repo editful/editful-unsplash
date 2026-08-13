@@ -1,0 +1,57 @@
+name: Publish plugin package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+
+      - name: Verify tag matches package version
+        run: |
+          test "${GITHUB_REF_NAME}" = "v$(node -p \"require('./package.json').version\")"
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify
+      - run: pnpm build
+
+      - name: Pack compiled artifact
+        id: pack
+        run: |
+          package_path=$(npm pack --ignore-scripts --json | node -e "let input=''; process.stdin.on('data', chunk => input += chunk); process.stdin.on('end', () => process.stdout.write(JSON.parse(input)[0].filename));")
+          echo "path=${package_path}" >> "$GITHUB_OUTPUT"
+          shasum -a 256 "$package_path" > SHA256SUMS
+
+      - name: Publish to GitHub Packages
+        run: npm publish "${{ steps.pack.outputs.path }}" --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish public trusted-channel artifact
+        run: >-
+          gh release create "${GITHUB_REF_NAME}"
+          "${{ steps.pack.outputs.path }}"
+          SHA256SUMS
+          --verify-tag
+          --generate-notes
+          --title "Unsplash ${GITHUB_REF_NAME}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
